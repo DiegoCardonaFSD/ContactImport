@@ -130,8 +130,10 @@ return [
     |
     */
 
-    'phone' => 'the phone does not have the proper format',
-    'franchise_doesnot_exists' => 'no franchise can be found for the card',
+    'phone' => 'The phone does not have the proper format',
+    'franchise_doesnot_exists' => 'No franchise can be found for the card',
+    'date_multi_format' => 'The date does not comply with any of the established formats',
+    'contact_exist' => 'The contact has already been registered',
 
     'custom' => [
         'attribute-name' => [

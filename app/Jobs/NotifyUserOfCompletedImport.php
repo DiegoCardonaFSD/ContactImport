@@ -41,7 +41,7 @@ class NotifyUserOfCompletedImport implements ShouldQueue
     {
         $files = File::where('status', 'PROCESSING')->get();
         $files->each(function ($file){
-           if($file->failedContacts->count() == 0 && $file->contacts->count() > 0){
+           if($file->contacts->count() > 0){
                $file->status = 'FINISHED';
            }elseif($file->failedContacts->count() > 0 && $file->contacts->count() == 0){
                 $file->status = 'FAILED';

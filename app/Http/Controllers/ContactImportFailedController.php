@@ -23,6 +23,10 @@ class ContactImportFailedController extends Controller
         ]);
     }
 
+    /**
+     * @param FailedContact $failedContact
+     * @return Application|Factory|View
+     */
     public function show(FailedContact $failedContact){
         return view('contacts.imports.failed.show', ['failed_contact' => $failedContact]);
     }

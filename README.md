@@ -1,12 +1,31 @@
-Installation instructions
+# CONTACT IMPORTER BY Diego Cardona
+
+## IMPORTANT
+In the following link you can find an explanatory video of how it works and how the solution was built..
+
+(Link) [http://thedeveloper.co/contactimporter/]
+
+## Information to test
+- Url: "http://contactimporter.thedeveloper.co/"
+- User: diego0123@gmail.com
+- Pass: Admin1234/
+
+Note: this platform is hosted in DigitalOcean, Ubuntu 18.04
+
+
+## Requirements
+- Laravel 8
+- PHP 7.4
+- Mysql 5 - MariaDB 10
+
+## Installation instructions
+
 So far, the configuration is done in a standard way like all Laravel applications.
 
-the repository is cloned.
-the composer install command is executed, to install all the dependencies of the project.
-the .env file is configured, with all the environment variables that were used in development.
-At this point it is important to create a database in mysql with its respective user.
-
-We give a suitable title to the platform.
+1) clone the repository.
+2) execute the command `"composer install"`, to install all the dependencies of the project.
+3) create a mysql database, we need a user with password and privileges over this database.
+4) configure the .env file, you can use the base .env configuration(.env.example), but it's important configure the following variables(below): 
 
 Environment variables, with a specific configuration
 
@@ -43,9 +62,11 @@ Environment variables, with a specific configuration
 `MAIL_FROM_NAME = "$ {APP_NAME}"`
 
 
-We execute the migrations + the seeders php artisan migrate `"php artisan migrate: fresh --seed"`
+5) execute the migrations + the seeders 
 
-At the moment these are the installation instructions.
+`"php artisan migrate: fresh --seed"`
+
+Enjoy!
 
 Good day!
 

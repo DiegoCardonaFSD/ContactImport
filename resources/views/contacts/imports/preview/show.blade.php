@@ -45,7 +45,7 @@
                                 &nbsp;
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-primary">{{ __('contacts.import') }}</button>
+                                <button type="submit" id="submit" class="btn btn-primary">{{ __('contacts.import') }}</button>
                             </td>
                         </tr>
                         </tbody>
@@ -55,4 +55,5 @@
         </div>
     </div>
     <script src="{{ asset('js/custom.js') }}" defer></script>
+    <script src="{{ asset('js/send.js') }}" defer></script>
 @endsection

@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\FilesImport;
+
+use App\Http\Requests\ContactImportStoreRequest;
 use App\Models\File;
 use Facade\FlareClient\Stacktrace\File as FileReader;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use SplFileObject;
+
 
 
 class ContactsImportController extends Controller
@@ -24,6 +26,10 @@ class ContactsImportController extends Controller
         return view('contacts.imports.index', compact('files'));
     }
 
+    /**
+     * @param File $file
+     * @return Application|Factory|View
+     */
     public function show(File $file){
         $contacts = $file->contacts()->paginate(20);
         return view('contacts.imports.show', [
@@ -32,11 +38,18 @@ class ContactsImportController extends Controller
             ]);
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function create(){
         return view('contacts.imports.create');
     }
 
-    public function store(Request $request){
+    /**
+     * @param ContactImportStoreRequest $request
+     * @return Application|Factory|View|RedirectResponse|Redirector
+     */
+    public function store(ContactImportStoreRequest $request){
         $filePath = $request->file('file')->store('import');
 
         $fileReader = new FileReader(storage_path('app/'.$filePath));

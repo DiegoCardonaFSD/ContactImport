@@ -8,7 +8,7 @@ return [
     'import' => 'Import',
     'csv_import' => 'Cvs import',
     'csv_file' => 'Cvs file to import',
-    'create' => 'Create',
+    'create' => 'Import File',
     'status' => 'Status',
     'action' => 'Action',
     'view' => 'View',

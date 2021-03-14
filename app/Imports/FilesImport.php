@@ -7,9 +7,11 @@ use App\Models\Contact;
 use App\Models\FailedContact;
 use App\Models\File;
 use App\Rules\CheckCardFranchise;
+use App\Rules\CheckContactUnique;
 use App\Rules\CheckPhoneFormat;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
@@ -88,7 +90,7 @@ class FilesImport implements ToModel,
             '*.'.$this->fields[2] => ['required', new CheckPhoneFormat()],
             '*.'.$this->fields[3] => ['required'],
             '*.'.$this->fields[4] => ['required', new CheckCardFranchise()],
-            '*.'.$this->fields[5] => ['required', 'email'], //todo: validar unico por cuenta
+            '*.'.$this->fields[5] => ['required','email',new CheckContactUnique($this->file)],
         ];
 
     }
@@ -101,7 +103,8 @@ class FilesImport implements ToModel,
 
             if(isset($errors[$failure->row()])){
                 $messages = $errors[$failure->row()]['messages'];
-                array_push($messages, implode(",", $failure->values()));
+                array_push($messages, $failure->errors()[0]);
+                $current['record'] = implode(",", $failure->values());
                 $errors[$failure->row()]['messages'] = $messages;
             }else{
                 $current['record'] = implode(",", $failure->values());

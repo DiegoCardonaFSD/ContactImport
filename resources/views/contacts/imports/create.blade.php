@@ -67,7 +67,7 @@
                                             <div class="form-group">
                                                 <input type="file" name="file" />
 
-                                                <button type="submit" class="btn btn-primary">{{ __('contacts.import') }}</button>
+                                                <button type="submit" id="submit" class="btn btn-primary">{{ __('contacts.import') }}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -80,4 +80,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/send.js') }}" defer></script>
 @endsection
