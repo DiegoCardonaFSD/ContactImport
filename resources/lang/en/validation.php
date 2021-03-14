@@ -130,6 +130,9 @@ return [
     |
     */
 
+    'phone' => 'the phone does not have the proper format',
+    'franchise_doesnot_exists' => 'no franchise can be found for the card',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

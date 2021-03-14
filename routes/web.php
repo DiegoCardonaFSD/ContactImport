@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactImportFailedController;
+use App\Http\Controllers\ContactsImportController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +17,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function () {
+
+    Route::get('/', [ContactController::class, 'index'])->name('index');
+    Route::get('/{contact}', [ContactController::class, 'show'])->name('show');
+
+});
+
+Route::group(['prefix' => 'contacts-import', 'as' => 'contacts-import.'], function () {
+    Route::get('/', [ContactsImportController::class, 'index'])->name('index');
+    Route::post('/', [ContactsImportController::class, 'store'])->name('store');
+    Route::get('/create', [ContactsImportController::class, 'create'])->name('create');
+    Route::get('/{file}', [ContactsImportController::class, 'show'])->name('show');
+});
+
+
+
+Route::group(['prefix' => 'contacts-import-failed', 'as' => 'contacts-import-failed.'], function () {
+    Route::get('/{file}', [ContactImportFailedController::class, 'index'])->name('index');
+    Route::get('/failed/{failedContact}', [ContactImportFailedController::class, 'show'])->name('show');
+});
+
