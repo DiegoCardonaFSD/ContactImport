@@ -17,7 +17,7 @@ class ContactController extends Controller
      */
     public function index(){
         $files = File::where('user_id', Auth::id())->pluck('id');
-        $contacts = Contact::whereIn('file_id', $files)->paginate(20);
+        $contacts = Contact::whereIn('file_id', $files)->orderBy('id', 'desc')->paginate(20);
         return view('contacts.index', compact('contacts'));
     }
 

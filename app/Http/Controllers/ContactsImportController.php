@@ -20,7 +20,7 @@ class ContactsImportController extends Controller
      * @return Application|Factory|View
      */
     public function index(){
-        $files = File::where('user_id', Auth::id())->paginate(20);
+        $files = File::where('user_id', Auth::id())->orderBy('id', 'desc')->paginate(20);
         return view('contacts.imports.index', compact('files'));
     }
 
