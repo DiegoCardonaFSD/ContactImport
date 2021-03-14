@@ -24,7 +24,6 @@ class CreateContactsTable extends Migration
             $table->string('franchise');
             $table->string('email');
             $table->foreignId('file_id')->constrained();
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

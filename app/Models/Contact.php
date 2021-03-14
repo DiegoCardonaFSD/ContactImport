@@ -11,7 +11,7 @@ class Contact extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','date_of_birth', 'phone', 'address', 'card_token', 'card_last_digits', 'franchise', 'email', 'file_id', 'user_id'];
+    protected $fillable = ['name','date_of_birth', 'phone', 'address', 'card_token', 'card_last_digits', 'franchise', 'email', 'file_id'];
 
     /**
      * @param $value
@@ -27,6 +27,10 @@ class Contact extends Model
      */
     public function file(){
         return $this->belongsTo(File::class, 'file_id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 

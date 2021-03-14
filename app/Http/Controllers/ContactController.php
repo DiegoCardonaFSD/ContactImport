@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\File;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,7 +16,8 @@ class ContactController extends Controller
      * @return Application|Factory|View
      */
     public function index(){
-        $contacts = Contact::where('user_id', Auth::id())->paginate(20);
+        $files = File::where('user_id', Auth::id())->pluck('id');
+        $contacts = Contact::whereIn('file_id', $files)->paginate(20);
         return view('contacts.index', compact('contacts'));
     }
 

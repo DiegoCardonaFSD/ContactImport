@@ -45,22 +45,7 @@ class ContactsImportController extends Controller
         $file->save();
 
         $fileReader = new FileReader(storage_path('app/'.$filePath));
-       /* dump($fileReader->getLine(1));
-        dump($fileReader->numberOfLines());*/
-//        $content = FileReader::get($filePath);
-//        foreach ($file as $row) {
-//            dump($row);
-//        }
 
-//        $fileImport = new FilesImport($file);
-//        $fileImport->import($filePath);
-//
-//        Log::debug('errores');
-//        Log::debug($file->failedContacts);
-
-        dump(explode(',', $fileReader->getLine(1)));
-        dump(config('import.fields'));
-        //return back();
 
         return view('contacts.imports.preview.show', [
             'file' =>  $file,

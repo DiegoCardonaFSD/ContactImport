@@ -3,7 +3,9 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactImportFailedController;
 use App\Http\Controllers\ContactsImportController;
+use App\Http\Controllers\ProcessImportController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +37,8 @@ Route::group(['prefix' => 'contacts-import', 'as' => 'contacts-import.'], functi
     Route::get('/{file}', [ContactsImportController::class, 'show'])->name('show');
 });
 
+Route::post('process-import', [ProcessImportController::class, 'store'])->name('process-import.store');
+
 
 
 Route::group(['prefix' => 'contacts-import-failed', 'as' => 'contacts-import-failed.'], function () {
@@ -42,3 +46,7 @@ Route::group(['prefix' => 'contacts-import-failed', 'as' => 'contacts-import-fai
     Route::get('/failed/{failedContact}', [ContactImportFailedController::class, 'show'])->name('show');
 });
 
+
+Route::get('mail', function(){
+   Mail::to('diego0123@gmail.com')->send(new \App\Mail\FinishProcessEmail());
+});

@@ -17,10 +17,10 @@
         <div class="col-md-12">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page">{{__('contacts.name')}}</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('contacts-import.show', $file->id) }}">{{__('contacts.name')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('contacts-import.show', $file->id) }}">{{__('contacts.failed')}}</a>
+                    <a class="nav-link active" >{{__('contacts.failed')}}</a>
                 </li>
                 </li>
             </ul>
