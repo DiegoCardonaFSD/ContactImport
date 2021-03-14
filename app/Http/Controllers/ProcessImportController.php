@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcessImportStoreRequest;
 use App\Imports\FilesImport;
+use App\Jobs\NotifyUserOfCompletedImport;
 use App\Models\File;
+use App\Notifications\FileProcessFinished;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProcessImportController extends Controller
 {
@@ -25,7 +28,11 @@ class ProcessImportController extends Controller
         }
 
         $fileImport = new FilesImport($file, $fields);
-        $fileImport->import($file->path);
+        $fileImport->queue($file->path)->chain([
+            new NotifyUserOfCompletedImport(Auth::user())
+        ]);
+
+        return redirect(route('contacts-import.index'))->with('message', trans('contacts.send_message'));
 
     }
 

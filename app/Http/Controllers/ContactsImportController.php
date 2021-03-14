@@ -46,6 +46,10 @@ class ContactsImportController extends Controller
 
         $fileReader = new FileReader(storage_path('app/'.$filePath));
 
+        if($fileReader->numberOfLines() == 0 ||
+            ($fileReader->numberOfLines() == 1 && $fileReader->getLine(1) == "")){
+            return redirect(route('contacts-import.index'))->with('error', trans('contacts.file_empty'));
+        }
 
         return view('contacts.imports.preview.show', [
             'file' =>  $file,

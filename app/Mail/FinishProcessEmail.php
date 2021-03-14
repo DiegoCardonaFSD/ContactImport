@@ -11,15 +11,18 @@ class FinishProcessEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    private array $data = [];
+
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * FinishProcessEmail constructor.
+     * @param array $data
      */
-    public function __construct()
+    public function __construct(array $data = [])
     {
-        //
+        $this->data = $data;
     }
+
 
     /**
      * Build the message.
@@ -28,6 +31,6 @@ class FinishProcessEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.finishprocess');
+        return $this->markdown('emails.finishprocess', $this->data);
     }
 }

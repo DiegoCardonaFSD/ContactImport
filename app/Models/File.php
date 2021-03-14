@@ -13,6 +13,8 @@ class File extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['status'];
+
     public function failedContacts(){
         return $this->hasMany(FailedContact::class);
     }

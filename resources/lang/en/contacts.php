@@ -2,6 +2,7 @@
 
 return [
 
+    'dashboard' => 'Dashboard',
     'name' => 'Contacts',
     'failed' => 'Failed contacts',
     'import' => 'Import',
@@ -14,6 +15,9 @@ return [
     'detail' => 'Detail',
     'return' => 'Return',
     'select' => 'Select an option',
+    'file_empty' => 'The file is empty',
+    'send_message' => 'Your file is being processed, once it is finished, you will be informed via email',
+    'welcome' => 'Welcome to Contacts Importer, please upload your first file >>>',
     'list' => [
         'id' => 'Id',
         'name' => 'Name',

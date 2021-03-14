@@ -1,10 +1,10 @@
 @component('mail::message')
-# Introduction
+# Your bulk upload has ended
 
-The body of your message.
+Please go to the platform to verify the result.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => $url])
+See results
 @endcomponent
 
 Thanks,<br>
