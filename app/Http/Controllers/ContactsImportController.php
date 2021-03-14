@@ -39,17 +39,17 @@ class ContactsImportController extends Controller
     public function store(Request $request){
         $filePath = $request->file('file')->store('import');
 
-        $file = new File();
-        $file->user_id = Auth::id();
-        $file->path = $filePath;
-        $file->save();
-
         $fileReader = new FileReader(storage_path('app/'.$filePath));
 
         if($fileReader->numberOfLines() == 0 ||
             ($fileReader->numberOfLines() == 1 && $fileReader->getLine(1) == "")){
             return redirect(route('contacts-import.index'))->with('error', trans('contacts.file_empty'));
         }
+
+        $file = new File();
+        $file->user_id = Auth::id();
+        $file->path = $filePath;
+        $file->save();
 
         return view('contacts.imports.preview.show', [
             'file' =>  $file,
